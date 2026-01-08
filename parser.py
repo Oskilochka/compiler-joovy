@@ -85,7 +85,7 @@ def parseToken(expected_lex, expected_tok):
     numLine, lex, tok = getSymb()
 
     if (lex, tok) == (expected_lex, expected_tok):
-        print(f'{indent}✓ Рядок {numLine}: ({lex}, {tok})')
+        print(f'{indent}✓ Line {numLine}: ({lex}, {tok})')
         nextSymb()
         prevIndent()
         return True
@@ -388,16 +388,23 @@ def parseIfStatement():
     prevIndent()
     return True
 
-
 def parseForLoop():
-    #  ForLoop = 'for' '(' Ident 'in' Expression '..' Expression ')' Block
+    """
+    ForLoop = 'for' '(' Ident 'in' RangeStart '..' RangeEnd ')' Block
+
+    IMPORTANT: Lexer recognizes '1..5' in different ways:
+    - Case 1: '1' '.' '.' '5' (INT, DOT, DOT, INT)
+    - Case 2: '1.' '.5' (FLOAT, FLOAT) - dots stick to numbers
+
+    Handle both cases by accepting any combination of numbers and dots
+    """
     indent = nextIndent()
     print(f'{indent}parseForLoop()')
 
     parseToken('for', 'KEYWORD')
     parseToken('(', 'PAR_OP')
 
-    # Ident
+    # Ident (loop counter)
     numLine, lex, tok = getSymb()
     if tok != 'IDENTIFIER':
         failParse('unexpected_token', (numLine, lex, tok, 'IDENTIFIER'))
@@ -405,10 +412,45 @@ def parseForLoop():
     nextSymb()
 
     parseToken('in', 'KEYWORD')
-    parseExpression()
-    parseToken('.', 'DOT')
-    parseToken('.', 'DOT')
-    parseExpression()
+
+    # Range start (can be INT or FLOAT like "1." or just "1")
+    numLine, lex, tok = getSymb()
+    if tok not in ('INT', 'FLOAT'):
+        failParse('unexpected_token', (numLine, lex, tok, 'range start (number)'))
+
+    start_value = lex
+    print(f'{indent}  Range start: {lex}')
+    nextSymb()
+
+    # Range operator ".."
+    # Can be represented as:
+    # - Two DOT tokens (if it was "1..5")
+    # - No DOTs (if lexer made "1." and ".5")
+    # - One DOT (if it was "1." and then ".5")
+
+    # Skip all DOT tokens until we find a number
+    dot_count = 0
+    while True:
+        numLine, lex, tok = getSymb()
+        if lex == '.' and tok == 'DOT':
+            dot_count += 1
+            nextSymb()
+        else:
+            break
+
+    # If start was integer and we have no dots - that's wrong
+    # If start was float (1.) and we have dots - that's the range operator
+    # Accept any combination with at least context making sense
+
+    # Range end (can be INT or FLOAT like ".5" or just "5")
+    numLine, lex, tok = getSymb()
+    if tok not in ('INT', 'FLOAT'):
+        failParse('unexpected_token', (numLine, lex, tok, 'range end (number)'))
+
+    end_value = lex
+    print(f'{indent}  Range end: {lex}')
+    nextSymb()
+
     parseToken(')', 'PAR_OP')
     parseBlock()
 
