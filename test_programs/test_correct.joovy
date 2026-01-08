@@ -37,7 +37,7 @@ if (radius > 0) {
 
 for (i in 1..5) {
     int square = i ^ 2
-    print("Число:", i, "Square:", square)
+    print("Number:", i, "Square:", square)
 }
 
 for (i in 1..3) {

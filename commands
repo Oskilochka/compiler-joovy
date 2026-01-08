@@ -1,2 +1,11 @@
 python -m lexer.main test_programs/test_basic.joovy
 python run_tests.py
+
+python run_parser.py test_programs/test_correct.joovy
+
+
+# Test 1: Simple correct program (should PASS)
+python run_parser.py test_programs/test_correct.joovy
+
+# Test 2: Program with syntax errors (should FAIL with diagnostics)
+python run_parser.py test_programs/test_syntax_errors.joovy

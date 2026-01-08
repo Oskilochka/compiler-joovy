@@ -1,3 +1,4 @@
+
 // Test 1: Missing closed bracket
 int x = (5 + 3
 
@@ -12,12 +13,16 @@ def myFunc {
 // Test 4: Missing closing block bracket
 if (x > 0) {
     print("Positive")
-// } <- закоментовано
+// } <- commented
 
-// Test 5: Invalid assignment operator
-int z := 10
 
 // Test 6: Missing 'in' in for loop
 for (i 1..5) {
     print(i)
 }
+
+// Test 7: Missing expression after assignment
+int z =
+
+// Test 8: Using wrong brackets
+int a = [5 + 3]
