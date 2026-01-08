@@ -12,7 +12,7 @@ def circleArea(r) {
     return PI * r ^ 2
 }
 
-// Main programm
+// Main program
 print("Enter R:")
 input(radius)
 

@@ -1,0 +1,74 @@
+const float PI = 3.14159
+const int MAX = 100
+int x = 5
+int y
+float radius = 10.5
+bool flag = true
+string name = "Alice"
+
+def circleArea(r) {
+    return PI * r ^ 2
+}
+
+def isPositive(num) {
+    if (num > 0) {
+        return true
+    } else {
+        return false
+    }
+}
+
+// main program
+print("Enter R:")
+input(radius)
+
+if (radius > 0) {
+    float area = circleArea(radius)
+    print("Area of circle:", area)
+
+    if (area > 100.0) {
+        print("Big circle")
+    } else {
+        print("Small circle")
+    }
+} else {
+    print("Error: R should be positive")
+}
+
+for (i in 1..5) {
+    int square = i ^ 2
+    print("Число:", i, "Square:", square)
+}
+
+for (i in 1..3) {
+    for (j in 1..3) {
+        int product = i * j
+        print(i, "*", j, "=", product)
+    }
+}
+
+int a = 10
+int b = 3
+print("a + b =", a + b)
+print("a - b =", a - b)
+print("a * b =", a * b)
+print("a / b =", a / b)
+print("a ^ b =", a ^ b)
+
+if (a > b) {
+    print("a bigger than b")
+}
+
+if (a == 10) {
+    print("a equals 10")
+}
+
+float result = (a + b) * (a - b) / 2.0
+print("Result:", result)
+
+int negative = -a
+int positive = +b
+print("Negative:", negative)
+print("Positive:", positive)
+
+print("End")

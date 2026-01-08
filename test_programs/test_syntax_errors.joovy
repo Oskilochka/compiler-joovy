@@ -1,0 +1,23 @@
+// Test 1: Missing closed bracket
+int x = (5 + 3
+
+// Test 2: Operator missing
+int y = 5 10
+
+// Test 3: Incorrect function declaration (parentheses omitted)
+def myFunc {
+    return 42
+}
+
+// Test 4: Missing closing block bracket
+if (x > 0) {
+    print("Positive")
+// } <- закоментовано
+
+// Test 5: Invalid assignment operator
+int z := 10
+
+// Test 6: Missing 'in' in for loop
+for (i 1..5) {
+    print(i)
+}
