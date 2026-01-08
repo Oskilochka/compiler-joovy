@@ -1,0 +1,9 @@
+// Test 1: Invalid character
+int x = 5
+int y = @10
+
+// Test 2: Incomplete operator
+bool flag = ! true
+
+// Test 3: Incorrect identifier
+int 123var = 5

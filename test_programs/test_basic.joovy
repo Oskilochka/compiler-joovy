@@ -1,0 +1,29 @@
+// Base example
+const float PI = 3.14159
+const int MAX = 100
+
+int x = 5
+float radius = 10.5
+bool flag = true
+string name = "Alice"
+
+// Area calculation function
+def circleArea(r) {
+    return PI * r ^ 2
+}
+
+// Main programm
+print("Enter R:")
+input(radius)
+
+if (radius > 0) {
+    float area = circleArea(radius)
+    print("Area of circle:", area)
+} else {
+    print("Error: R should be positive")
+}
+
+// Loop
+for (i in 1..5) {
+    print("Number:", i)
+}

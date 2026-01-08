@@ -1,0 +1,2 @@
+python -m lexer.main test_programs/test_basic.joovy
+python run_tests.py
