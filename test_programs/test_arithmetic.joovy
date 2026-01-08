@@ -1,0 +1,20 @@
+// Test arithmetic operations and assignment
+
+int a = 10
+int b = 5
+
+int sum = a + b
+int diff = a - b
+int prod = a * b
+float div = a / b
+
+print("a =", a)
+print("b =", b)
+print("Sum:", sum)
+print("Difference:", diff)
+print("Product:", prod)
+print("Division:", div)
+
+// Complex expression
+int result = (a + b) * 2 - 3
+print("Result:", result)
